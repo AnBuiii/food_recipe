@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../colors.dart';
-import '../typo.dart';
+import 'package:food_recipe/utils/colors.dart';
+import 'package:food_recipe/utils/typo.dart';
 
 class BigButton extends StatelessWidget {
   final Function() onClick;

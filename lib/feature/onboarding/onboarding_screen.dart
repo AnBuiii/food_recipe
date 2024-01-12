@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:food_recipe/utils/route/app_router.dart';
 import 'package:food_recipe/utils/typo.dart';
-import 'package:food_recipe/utils/widget/big_button.dart';
+
+import '../home/widget/big_button.dart';
 
 @RoutePage()
 class OnboardScreen extends StatelessWidget {
@@ -70,7 +72,7 @@ class OnboardScreen extends StatelessWidget {
                         ),
                         BigButton(
                           onClick: () {
-                            route.replaceNamed("/home");
+                            route.replace(const SomeRoute());
                           },
                         )
                       ],

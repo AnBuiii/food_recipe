@@ -15,10 +15,22 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    DiscoverRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const DiscoverScreen(),
+      );
+    },
     HomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const HomeScreen(),
+      );
+    },
+    NotificationRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const NotificationScreen(),
       );
     },
     OnboardRoute.name: (routeData) {
@@ -27,19 +39,33 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const OnboardScreen(),
       );
     },
-    RouteA.name: (routeData) {
+    ProfileRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const ScreenA(),
+        child: const ProfileScreen(),
       );
     },
-    RouteB.name: (routeData) {
+    SomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const ScreenB(),
+        child: const SomeScreen(),
       );
     },
   };
+}
+
+/// generated route for
+/// [DiscoverScreen]
+class DiscoverRoute extends PageRouteInfo<void> {
+  const DiscoverRoute({List<PageRouteInfo>? children})
+      : super(
+          DiscoverRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'DiscoverRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -52,6 +78,20 @@ class HomeRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'HomeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [NotificationScreen]
+class NotificationRoute extends PageRouteInfo<void> {
+  const NotificationRoute({List<PageRouteInfo>? children})
+      : super(
+          NotificationRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'NotificationRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -71,29 +111,29 @@ class OnboardRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [ScreenA]
-class RouteA extends PageRouteInfo<void> {
-  const RouteA({List<PageRouteInfo>? children})
+/// [ProfileScreen]
+class ProfileRoute extends PageRouteInfo<void> {
+  const ProfileRoute({List<PageRouteInfo>? children})
       : super(
-          RouteA.name,
+          ProfileRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'RouteA';
+  static const String name = 'ProfileRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
-/// [ScreenB]
-class RouteB extends PageRouteInfo<void> {
-  const RouteB({List<PageRouteInfo>? children})
+/// [SomeScreen]
+class SomeRoute extends PageRouteInfo<void> {
+  const SomeRoute({List<PageRouteInfo>? children})
       : super(
-          RouteB.name,
+          SomeRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'RouteB';
+  static const String name = 'SomeRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

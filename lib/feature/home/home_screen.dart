@@ -1,12 +1,14 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:food_recipe/utils/colors.dart';
+import 'package:food_recipe/feature/home/widget/common_textfield.dart';
+import 'package:food_recipe/feature/home/widget/popular_creator_section.dart';
+import 'package:food_recipe/feature/home/widget/popular_section.dart';
+import 'package:food_recipe/feature/home/widget/recent_section.dart';
+import 'package:food_recipe/feature/home/widget/section_title.dart';
+import 'package:food_recipe/feature/home/widget/see_all.dart';
+import 'package:food_recipe/feature/home/widget/trending_widget.dart';
 import 'package:food_recipe/utils/typo.dart';
-import 'package:food_recipe/utils/widget/common_textfield.dart';
-import 'package:food_recipe/utils/widget/popular_section.dart';
-import 'package:food_recipe/utils/widget/recent_section.dart';
-import 'package:food_recipe/utils/widget/trending_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage()
@@ -49,27 +51,7 @@ class HomeScreen extends HookConsumerWidget {
             const SizedBox(
               height: 12,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text("Trending now 🔥", style: h5),
-                  Row(
-                    children: [
-                      Text(
-                        "See all",
-                        style: bodyLarge.copyWith(color: primaryColor),
-                      ),
-                      const Icon(
-                        Icons.arrow_forward,
-                        color: primaryColor,
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ),
+            const SectionTitle(title: "Trending now 🔥"),
             SizedBox(
               height: 300,
               child: ListView.separated(
@@ -77,11 +59,15 @@ class HomeScreen extends HookConsumerWidget {
                 scrollDirection: Axis.horizontal,
                 itemCount: 5,
                 itemBuilder: (b, a) {
-                  return const TrendingWidget(
-                      imageUrl: "assets/recipe.png",
-                      title: "How to make sushi at home",
-                      userImageUrl: "assets/person.png",
-                      username: "By Niki Samatha");
+                  return const SizedBox(
+                    width: 280,
+                    height: 300,
+                    child: TrendingWidget(
+                        imageUrl: "assets/recipe.png",
+                        title: "How to make sushi at home",
+                        userImageUrl: "assets/person.png",
+                        username: "By Niki Samatha"),
+                  );
                 },
                 separatorBuilder: (BuildContext context, int index) {
                   return const SizedBox(
@@ -96,8 +82,8 @@ class HomeScreen extends HookConsumerWidget {
             PopularSection((s) {
               //TODO
             }),
-
-            RecentSection()
+            const RecentSection(),
+            const PopularCreatorSection()
           ],
         ),
       ),
