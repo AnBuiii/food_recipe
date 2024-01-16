@@ -1,18 +1,20 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe/utils/colors.dart';
 import 'package:food_recipe/utils/typo.dart';
 
 class CommonTextField extends StatelessWidget {
   final TextEditingController textEditingController;
-  const CommonTextField({super.key, required this.textEditingController});
+  final bool isSearch;
+
+  const CommonTextField(
+      {super.key, required this.textEditingController, required this.isSearch});
 
   @override
   Widget build(BuildContext context) {
-    return  TextField(
+    return TextField(
       controller: textEditingController,
       decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.search),
+          prefixIcon: isSearch ? const Icon(Icons.search) : null,
           focusedBorder: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(10)),
             borderSide: BorderSide(color: Colors.black, width: 1),
@@ -24,6 +26,5 @@ class CommonTextField extends StatelessWidget {
           hintText: 'Search recipes',
           hintStyle: bodySmall.copyWith(color: neutral30)),
     );
-
   }
 }

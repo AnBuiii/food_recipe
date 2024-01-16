@@ -25,13 +25,13 @@ class RecentSection extends HookConsumerWidget {
       children: [
         const SectionTitle(title: "Recent recipe"),
         SizedBox(
-          height: 191,
+          height: 220,
           child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemBuilder: (ctx, idx) {
                 return SizedBox(
                   width: 124,
-                  height: 191,
+                  height: 220,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

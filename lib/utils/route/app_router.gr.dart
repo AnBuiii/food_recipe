@@ -15,6 +15,12 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    CreateRecipeRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CreateRecipeScreen(),
+      );
+    },
     DiscoverRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -25,6 +31,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const HomeScreen(),
+      );
+    },
+    MainRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MainScreen(),
       );
     },
     NotificationRoute.name: (routeData) {
@@ -45,13 +57,27 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ProfileScreen(),
       );
     },
-    SomeRoute.name: (routeData) {
+    RecipeDetailRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const SomeScreen(),
+        child: const RecipeDetailScreen(),
       );
     },
   };
+}
+
+/// generated route for
+/// [CreateRecipeScreen]
+class CreateRecipeRoute extends PageRouteInfo<void> {
+  const CreateRecipeRoute({List<PageRouteInfo>? children})
+      : super(
+          CreateRecipeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CreateRecipeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -78,6 +104,20 @@ class HomeRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'HomeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MainScreen]
+class MainRoute extends PageRouteInfo<void> {
+  const MainRoute({List<PageRouteInfo>? children})
+      : super(
+          MainRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MainRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -125,15 +165,15 @@ class ProfileRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [SomeScreen]
-class SomeRoute extends PageRouteInfo<void> {
-  const SomeRoute({List<PageRouteInfo>? children})
+/// [RecipeDetailScreen]
+class RecipeDetailRoute extends PageRouteInfo<void> {
+  const RecipeDetailRoute({List<PageRouteInfo>? children})
       : super(
-          SomeRoute.name,
+          RecipeDetailRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'SomeRoute';
+  static const String name = 'RecipeDetailRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

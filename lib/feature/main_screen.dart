@@ -5,8 +5,8 @@ import 'package:food_recipe/utils/route/app_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage()
-class SomeScreen extends ConsumerWidget {
-  const SomeScreen({super.key});
+class MainScreen extends ConsumerWidget {
+  const MainScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -17,13 +17,17 @@ class SomeScreen extends ConsumerWidget {
         NotificationRoute(),
         ProfileRoute(),
       ],
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked, //specify the location of the FAB
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      //specify the location of the FAB
       floatingActionButton: Container(
         height: 60,
         width: 60,
-        decoration: const BoxDecoration(
-          shape: BoxShape.circle,
-          color: primaryColor
+        decoration:
+            const BoxDecoration(shape: BoxShape.circle, color: primaryColor),
+        child: InkWell(
+          onTap: () {
+            context.router.push(CreateRecipeRoute());
+          },
         ),
       ),
       bottomNavigationBuilder: (_, tabsRouter) {
@@ -33,7 +37,6 @@ class SomeScreen extends ConsumerWidget {
           color: Colors.white,
           child: Container(
             margin: const EdgeInsets.only(left: 12.0, right: 12.0),
-
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -72,7 +72,7 @@ class OnboardScreen extends StatelessWidget {
                         ),
                         BigButton(
                           onClick: () {
-                            route.replace(const SomeRoute());
+                            route.replace(const MainRoute());
                           },
                         )
                       ],

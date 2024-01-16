@@ -1,4 +1,4 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:food_recipe/feature/home/widget/common_textfield.dart';
@@ -6,8 +6,8 @@ import 'package:food_recipe/feature/home/widget/popular_creator_section.dart';
 import 'package:food_recipe/feature/home/widget/popular_section.dart';
 import 'package:food_recipe/feature/home/widget/recent_section.dart';
 import 'package:food_recipe/feature/home/widget/section_title.dart';
-import 'package:food_recipe/feature/home/widget/see_all.dart';
 import 'package:food_recipe/feature/home/widget/trending_widget.dart';
+import 'package:food_recipe/utils/route/app_router.dart';
 import 'package:food_recipe/utils/typo.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -46,6 +46,7 @@ class HomeScreen extends HookConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
               child: CommonTextField(
                 textEditingController: searchController,
+                isSearch: true,
               ),
             ),
             const SizedBox(
@@ -59,14 +60,19 @@ class HomeScreen extends HookConsumerWidget {
                 scrollDirection: Axis.horizontal,
                 itemCount: 5,
                 itemBuilder: (b, a) {
-                  return const SizedBox(
+                  return SizedBox(
                     width: 280,
                     height: 300,
                     child: TrendingWidget(
-                        imageUrl: "assets/recipe.png",
-                        title: "How to make sushi at home",
-                        userImageUrl: "assets/person.png",
-                        username: "By Niki Samatha"),
+                      imageUrl: "assets/recipe.png",
+                      title: "How to make sushi at home",
+                      userImageUrl: "assets/person.png",
+                      username: "By Niki Samatha",
+                      onClick: () {
+                        print("navigate");
+                        context.router.push(const RecipeDetailRoute());
+                      },
+                    ),
                   );
                 },
                 separatorBuilder: (BuildContext context, int index) {
