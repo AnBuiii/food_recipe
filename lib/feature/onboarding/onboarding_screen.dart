@@ -40,19 +40,20 @@ class OnboardScreen extends StatelessWidget {
                         color: Colors.white,
                         size: 16,
                       ),
+                      const SizedBox(width: 8,),
                       Text(
                         "60k+ ",
-                        style: bodyLarge.copyWith(color: Colors.white),
+                        style: paragraph_bold.copyWith(color: Colors.white),
                       ),
                       Text(
                         "Premium recipes",
-                        style: bodyMedium.copyWith(color: Colors.white),
+                        style: paragraph_regular.copyWith(color: Colors.white),
                       )
                     ],
                   ),
                   SizedBox(
-                    height: 274,
-                    width: 247,
+                    // height: 274,
+                    width: 260,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -60,15 +61,23 @@ class OnboardScreen extends StatelessWidget {
                         const Text(
                           "Let's Cooking",
                           style: TextStyle(
+                              fontFamily: 'Poppins',
                               color: Colors.white,
                               fontSize: 56,
                               fontWeight: FontWeight.w600),
                           textAlign: TextAlign.center,
                         ),
+                        const SizedBox(
+                          height: 24,
+                        ),
                         Text(
                           "Find best recipes for cooking",
-                          style: bodyMedium.copyWith(color: Colors.white),
+                          style:
+                              paragraph_regular.copyWith(color: Colors.white),
                           textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(
+                          height: 40,
                         ),
                         BigButton(
                           onClick: () {

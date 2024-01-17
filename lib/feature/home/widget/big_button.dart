@@ -1,35 +1,33 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe/utils/colors.dart';
 import 'package:food_recipe/utils/typo.dart';
 
 class BigButton extends StatelessWidget {
   final Function() onClick;
+
   const BigButton({super.key, required this.onClick});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 54,
-      width: 206,
-      child: ElevatedButton(
-        onPressed: onClick,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: primaryColor,
-          foregroundColor: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius:
-            BorderRadius.circular(10),
-          ),
-        ),
-        child: const Row(
+    return Container(
+      width: 209,
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+      decoration: BoxDecoration(
+          color: primaryColor, borderRadius: BorderRadius.circular(10)),
+      child: GestureDetector(
+        onTap: onClick,
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Start Cooking",
-              style: bodyLarge,
+              "Start cooking",
+              style: bodyLarge.copyWith(color: Colors.white),
             ),
-            Icon(Icons.arrow_forward)
+            const Icon(
+              Icons.arrow_forward_sharp,
+              color: Colors.white,
+              size: 20,
+            )
           ],
         ),
       ),

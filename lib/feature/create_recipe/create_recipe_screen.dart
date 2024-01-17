@@ -25,100 +25,142 @@ class CreateRecipeScreen extends HookConsumerWidget {
       ),
       body: Stack(
         children: [
-
           SingleChildScrollView(
             child: Column(
               children: [
-                const Row(
-                  children: [
-                    Text("Create recipe"),
-                  ],
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  width: double.infinity,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.asset(
-                      "assets/create_image.png",
-                      fit: BoxFit.fitWidth,
-                    ),
+                const Padding(
+                  padding: EdgeInsets.only(left: 20.0, right: 20, bottom: 12),
+                  child: Row(
+                    children: [
+                      Text(
+                        "Create recipe",
+                        style: h4_bold,
+                      ),
+                    ],
                   ),
                 ),
                 Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                  child: CommonTextField(
-                    textEditingController: nameController,
-                    isSearch: false,
-                  ),
-                ),
-                const CreateInfoWidget(),
-                const SizedBox(
-                  height: 12,
-                ),
-                const CreateInfoWidget(),
-                const Row(
-                  children: [Text("Ingredients")],
-                ),
-                const AddIngredientWidget(),
-                const SizedBox(
-                  height: 12,
-                ),
-                const AddIngredientWidget(),
-                const SizedBox(
-                  height: 12,
-                ),
-                const AddIngredientWidget(),
-                const SizedBox(
-                  height: 12,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  child: Column(
                     children: [
-                      Expanded(
-                        flex: 2,
-                        child: CommonTextField(
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.asset(
+                          "assets/create_image.png",
+                          height: 200,
+                          width: double.infinity,
+                          fit: BoxFit.fitWidth,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      CommonTextField(
                           textEditingController: nameController,
                           isSearch: false,
-                        ),
-                      ),
+                          hint: 'Recipe name'),
+                      SizedBox(height: 16,),
+                      const CreateInfoWidget(),
                       const SizedBox(
-                        width: 12,
+                        height: 12,
                       ),
-                      Expanded(
-                        flex: 1,
-                        child: CommonTextField(
-                          textEditingController: itemName,
-                          isSearch: false,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 12,
-                      ),
-                      Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border:
-                                  Border.all(color: Colors.black, width: 2)),
-                          child: const Icon(Icons.add)),
+                      const CreateInfoWidget(),
                     ],
                   ),
                 ),
-                Row(
-                  children: [
-                    InkWell(
-                      onTap: () {},
-                      child: const Wrap(
-                        direction: Axis.horizontal,
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  child: Column(
+                    children: [
+                      const Row(
                         children: [
-                          Icon(Icons.add),
-                          Text("Add new ingredients"),
+                          Text(
+                            "Ingredients",
+                            style: h5,
+                          ),
                         ],
                       ),
-                    ),
-                  ],
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      ListView.separated(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (ctx, idx) {
+                          return AddIngredientWidget(
+                            onClick: () {},
+                          );
+                        },
+                        separatorBuilder: (ctx, idx) {
+                          return const SizedBox(
+                            height: 16,
+                          );
+                        },
+                        itemCount: 3,
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: CommonTextField(
+                                textEditingController: itemName,
+                                isSearch: false,
+                                hint: 'Item name'),
+                          ),
+                          const SizedBox(
+                            width: 12,
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: CommonTextField(
+                                textEditingController: quantity,
+                                isSearch: false,
+                                hint: 'Quantity'),
+                          ),
+                          const SizedBox(
+                            width: 12,
+                          ),
+                          Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(
+                                      color: Colors.black, width: 2)),
+                              child: const Icon(Icons.add)),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      Row(
+                        children: [
+                          InkWell(
+                            onTap: () {},
+                            child: const Wrap(
+                              direction: Axis.horizontal,
+                              children: [
+                                Icon(
+                                  Icons.add,
+                                  size: 24,
+                                ),
+                                Text(
+                                  "Add new ingredients",
+                                  style: paragraph_bold,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 141,
                 )
               ],
             ),
@@ -131,22 +173,23 @@ class CreateRecipeScreen extends HookConsumerWidget {
               decoration: const BoxDecoration(
                 color: Colors.white,
               ),
-              child: Column (
+              child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 16),
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         backgroundColor: primaryColor,
                         foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
-                          borderRadius:
-                          BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(10),
                         ),
                       ),
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 32, vertical: 16),
                         width: double.infinity,
                         child: const Text(
                           "Save my recipe",
@@ -157,7 +200,7 @@ class CreateRecipeScreen extends HookConsumerWidget {
                     ),
                   ),
                 ],
-              )
+              ),
             ),
           ),
         ],

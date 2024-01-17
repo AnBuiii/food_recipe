@@ -23,38 +23,41 @@ class HomeScreen extends HookConsumerWidget {
         child: Column(
           children: [
             const SizedBox(
-              height: 44,
+              height: 64,
             ),
             Row(
               children: [
-                Align(
-                  child: Container(
-                    padding:
-                        const EdgeInsets.only(top: 20, left: 22, bottom: 20),
-                    child: const Text(
-                      "Find best recipes\nfor cooking",
-                      style: titleLarge,
-                    ),
+                Container(
+                  padding: const EdgeInsets.only(left: 20, bottom: 20),
+                  child: const Text(
+                    "Find best recipes\nfor cooking",
+                    style: h4_bold,
                   ),
                 ),
               ],
             ),
             const SizedBox(
-              height: 20,
+              height: 8,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
               child: CommonTextField(
                 textEditingController: searchController,
                 isSearch: true,
+                hint: 'Search recipe',
               ),
             ),
             const SizedBox(
               height: 12,
             ),
-            const SectionTitle(title: "Trending now 🔥"),
+            const SectionTitle(
+              title: "Trending now 🔥",
+            ),
+            const SizedBox(
+              height: 16,
+            ),
             SizedBox(
-              height: 300,
+              height: 266,
               child: ListView.separated(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 scrollDirection: Axis.horizontal,
@@ -62,14 +65,14 @@ class HomeScreen extends HookConsumerWidget {
                 itemBuilder: (b, a) {
                   return SizedBox(
                     width: 280,
-                    height: 300,
+                    height: 254,
                     child: TrendingWidget(
                       imageUrl: "assets/recipe.png",
                       title: "How to make sushi at home",
                       userImageUrl: "assets/person.png",
                       username: "By Niki Samatha",
+                      isSaved: a % 2 == 0,
                       onClick: () {
-                        print("navigate");
                         context.router.push(const RecipeDetailRoute());
                       },
                     ),
@@ -81,9 +84,6 @@ class HomeScreen extends HookConsumerWidget {
                   );
                 },
               ),
-            ),
-            const SizedBox(
-              height: 12,
             ),
             PopularSection((s) {
               //TODO

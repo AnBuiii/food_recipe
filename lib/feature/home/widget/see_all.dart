@@ -12,7 +12,10 @@ class SeeAllButton extends StatelessWidget {
       children: [
         Text(
           "See all",
-          style: bodyLarge.copyWith(color: primaryColor),
+          style: label_bold.copyWith(color: primaryColor),
+        ),
+        const SizedBox(
+          width: 4,
         ),
         const Icon(
           Icons.arrow_forward,

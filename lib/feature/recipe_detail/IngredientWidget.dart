@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe/utils/colors.dart';
+import 'package:food_recipe/utils/typo.dart';
 
 class IngredientWidget extends StatelessWidget {
   const IngredientWidget({super.key});
@@ -22,15 +23,30 @@ class IngredientWidget extends StatelessWidget {
                 Container(
                   height: 52,
                   width: 52,
+                  alignment: Alignment.center,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10)),
-                  child: Image.asset("assets/noodle.png"),
+                  child: Image.asset(
+                    "assets/noodle.png",
+                    width: 32,
+                    height: 32,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-                const Text("Bread")
+                const SizedBox(
+                  width: 16,
+                ),
+                const Text(
+                  "Bread",
+                  style: paragraph_bold,
+                )
               ],
             ),
-            const Text("200g")
+            Text(
+              "200g",
+              style: label_regular.copyWith(color: neutral40),
+            )
           ],
         ),
       ),
