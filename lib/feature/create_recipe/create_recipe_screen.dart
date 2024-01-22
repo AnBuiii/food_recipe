@@ -60,7 +60,7 @@ class CreateRecipeScreen extends HookConsumerWidget {
                           textEditingController: nameController,
                           isSearch: false,
                           hint: 'Recipe name'),
-                      SizedBox(height: 16,),
+                      const SizedBox(height: 16,),
                       const CreateInfoWidget(),
                       const SizedBox(
                         height: 12,

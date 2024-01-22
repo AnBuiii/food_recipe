@@ -1,11 +1,15 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:food_recipe/feature/home/widget/trending_widget.dart';
 import 'package:food_recipe/feature/profile/widget/ProfileWidget.dart';
 import 'package:food_recipe/utils/colors.dart';
 import 'package:food_recipe/utils/typo.dart';
+import 'package:food_recipe/utils/widgets/recipe_widget.dart';
+import 'package:food_recipe/utils/widgets/trending_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../data/meals.dart';
+import '../home/provider/recipe_providers.dart';
 
 @RoutePage()
 class ProfileScreen extends HookConsumerWidget {
@@ -174,105 +178,28 @@ class ProfileScreen extends HookConsumerWidget {
               shrinkWrap: true,
               itemBuilder: (ctx, idx) {
                 return SizedBox(
-                  width: double.infinity,
-                  height: 200,
-                  child: Stack(
-                    fit: StackFit.expand,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(
-                          "assets/recipe_2.png",
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 6),
-                          margin: const EdgeInsets.only(left: 8, top: 8),
-                          decoration: BoxDecoration(
-                            color: const Color(0x3030304d),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Wrap(
-                            direction: Axis.horizontal,
-                            children: [
-                              const Icon(
-                                Icons.star,
-                                color: Colors.white,
-                              ),
-                              const SizedBox(
-                                width: 4,
-                              ),
-                              Text(
-                                "4,5",
-                                style: label_bold.copyWith(color: Colors.white),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 16, bottom: 16),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                "How to make Italian \nSpaghetti at home",
-                                style: paragraph_bold.copyWith(
-                                    color: Colors.white),
-                                textAlign: TextAlign.start,
-                              ),
-                              const SizedBox(height: 8,),
-                              IntrinsicHeight(
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(
-                                      "12 Ingredients",
-                                      style: small_regular.copyWith(
-                                          color: Colors.white),
-                                    ),
-                                    // Divider(),
-                                    const Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 8.0),
-                                      child: VerticalDivider(
-                                        color: Colors.white,
-                                        thickness: 1,
-                                      ),
-                                    ),
-                                    Text(
-                                      "40 min",
-                                      style: small_regular.copyWith(
-                                          color: Colors.white),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: Container(
-                          margin: const EdgeInsets.only(top: 8, right: 8),
-                          width: 32,
-                          height: 32,
-                          decoration: const BoxDecoration(
-                              color: Colors.white, shape: BoxShape.circle),
-                          child: const Icon(Icons.more_horiz, color: primaryColor,),
-                        ),
-                      ),
-                    ],
-                  ),
-                );
+                    width: double.infinity,
+                    height: 200,
+                    child: RecipeWidget(Meals(
+                        idMeal: getRandomString(4),
+                        strMeal: 'OKEOKE',
+                        strCategory: '',
+                        strArea: '',
+                        strInstructions: '',
+                        strMealThumb:
+                            'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Ambersweet_oranges.jpg/1200px-Ambersweet_oranges.jpg',
+                        strTags: '',
+                        strYoutube: '',
+                        strIngredient1: '',
+                        strIngredient2: '',
+                        strIngredient3: '',
+                        strIngredient4: '',
+                        strIngredient5: '',
+                        strMeasure1: '',
+                        strMeasure2: '',
+                        strMeasure3: '',
+                        strMeasure4: '',
+                        strMeasure5: '')));
               },
               separatorBuilder: (ctx, idx) {
                 return const SizedBox(

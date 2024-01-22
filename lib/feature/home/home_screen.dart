@@ -6,7 +6,7 @@ import 'package:food_recipe/feature/home/widget/popular_creator_section.dart';
 import 'package:food_recipe/feature/home/widget/popular_section.dart';
 import 'package:food_recipe/feature/home/widget/recent_section.dart';
 import 'package:food_recipe/feature/home/widget/section_title.dart';
-import 'package:food_recipe/feature/home/widget/trending_widget.dart';
+import 'package:food_recipe/utils/widgets/trending_widget.dart';
 import 'package:food_recipe/utils/route/app_router.dart';
 import 'package:food_recipe/utils/typo.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -94,5 +94,51 @@ class HomeScreen extends HookConsumerWidget {
         ),
       ),
     );
+  }
+}
+
+class PositionRetainedScrollPhysics extends ScrollPhysics {
+  final Function(double) func;
+  final bool shouldRetain;
+
+  const PositionRetainedScrollPhysics({
+    super.parent,
+    this.shouldRetain = true,
+    required this.func,
+  });
+
+  @override
+  PositionRetainedScrollPhysics applyTo(ScrollPhysics? ancestor) {
+    return PositionRetainedScrollPhysics(
+      parent: buildParent(ancestor),
+      shouldRetain: shouldRetain,
+      func: (double) {},
+    );
+  }
+
+  @override
+  double adjustPositionForNewDimensions({
+    required ScrollMetrics oldPosition,
+    required ScrollMetrics newPosition,
+    required bool isScrolling,
+    required double velocity,
+  }) {
+    final position = super.adjustPositionForNewDimensions(
+      oldPosition: oldPosition,
+      newPosition: newPosition,
+      isScrolling: isScrolling,
+      velocity: velocity,
+    );
+
+    final diff = newPosition.maxScrollExtent - oldPosition.maxScrollExtent;
+    func(diff);
+
+    if (oldPosition.pixels > oldPosition.minScrollExtent &&
+        diff > 0 &&
+        shouldRetain) {
+      return position + diff;
+    } else {
+      return position;
+    }
   }
 }
