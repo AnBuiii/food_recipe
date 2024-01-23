@@ -1,4 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:food_recipe/data/meals.dart';
 import 'package:food_recipe/feature/create_recipe/create_recipe_screen.dart';
 import 'package:food_recipe/feature/discovery/discover_screen.dart';
 import 'package:food_recipe/feature/home/home_screen.dart';

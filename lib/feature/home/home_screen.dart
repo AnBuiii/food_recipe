@@ -73,7 +73,7 @@ class HomeScreen extends HookConsumerWidget {
                       username: "By Niki Samatha",
                       isSaved: a % 2 == 0,
                       onClick: () {
-                        context.router.push(const RecipeDetailRoute());
+                        // context.router.push(const RecipeDetailRoute());
                       },
                     ),
                   );

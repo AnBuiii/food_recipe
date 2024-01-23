@@ -3,7 +3,9 @@ import 'package:food_recipe/utils/colors.dart';
 import 'package:food_recipe/utils/typo.dart';
 
 class IngredientWidget extends StatelessWidget {
-  const IngredientWidget({super.key});
+  final String title;
+
+  const IngredientWidget({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +39,8 @@ class IngredientWidget extends StatelessWidget {
                 const SizedBox(
                   width: 16,
                 ),
-                const Text(
-                  "Bread",
+                Text(
+                  title,
                   style: paragraph_bold,
                 )
               ],

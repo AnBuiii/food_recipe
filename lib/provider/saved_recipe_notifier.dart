@@ -13,10 +13,8 @@ class SavedRecipeNotifier extends StateNotifier<List<Meals>> {
   late RecipeRepository recipeRepository;
   late StateNotifierProviderRef ref;
 
-  // late Map<String, Meals> mealMap;
 
   SavedRecipeNotifier(this.ref) : super([]) {
-    // mealMap = HashMap();
     recipeRepository = ref.read(recipeProvider);
     ref.listen(provideSavedIdNotifier, (prev, next) async {
       final futureList = next.map((id) async {

@@ -4,7 +4,7 @@ import 'dart:collection';
 import 'package:dio/dio.dart';
 import 'package:dio/src/dio.dart';
 import 'package:food_recipe/data/meals.dart';
-import 'package:food_recipe/database/saved_recipe.dart';
+import 'package:food_recipe/provider/saved_recipe.dart';
 import 'package:food_recipe/repository/recipe_repository.dart';
 import 'package:food_recipe/utils/const.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

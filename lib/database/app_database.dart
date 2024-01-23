@@ -1,4 +1,4 @@
-import 'package:food_recipe/database/save_recipe_id_notifier.dart';
+import 'package:food_recipe/provider/save_recipe_id_notifier.dart';
 import 'package:hive/hive.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

@@ -7,16 +7,25 @@ class CommonTextField extends StatelessWidget {
   final TextEditingController textEditingController;
   final String hint;
   final bool isSearch;
+  final Function(String)? onChange;
 
-  const CommonTextField(
-      {super.key, required this.textEditingController, required this.isSearch, required this.hint});
+  const CommonTextField({
+    super.key,
+    required this.textEditingController,
+    required this.isSearch,
+    required this.hint,
+    this.onChange,
+  });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: textEditingController,
+      onChanged: onChange,
       decoration: InputDecoration(
-        contentPadding: isSearch ? EdgeInsets.zero : const EdgeInsets.symmetric(horizontal:16 ),
+        contentPadding: isSearch
+            ? EdgeInsets.zero
+            : const EdgeInsets.symmetric(horizontal: 16),
         prefixIcon: isSearch
             ? SvgPicture.asset(
                 "assets/ic_union.svg",
@@ -36,7 +45,7 @@ class CommonTextField extends StatelessWidget {
         hintText: hint,
         hintStyle: label_regular.copyWith(color: neutral30),
       ),
-      style: label_regular ,
+      style: label_regular,
     );
   }
 }

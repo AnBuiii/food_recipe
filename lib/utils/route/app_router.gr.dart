@@ -58,9 +58,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     RecipeDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<RecipeDetailRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const RecipeDetailScreen(),
+        child: RecipeDetailScreen(
+          key: args.key,
+          recipe: args.recipe,
+        ),
       );
     },
   };
@@ -166,14 +170,38 @@ class ProfileRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [RecipeDetailScreen]
-class RecipeDetailRoute extends PageRouteInfo<void> {
-  const RecipeDetailRoute({List<PageRouteInfo>? children})
-      : super(
+class RecipeDetailRoute extends PageRouteInfo<RecipeDetailRouteArgs> {
+  RecipeDetailRoute({
+    Key? key,
+    required Meals recipe,
+    List<PageRouteInfo>? children,
+  }) : super(
           RecipeDetailRoute.name,
+          args: RecipeDetailRouteArgs(
+            key: key,
+            recipe: recipe,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'RecipeDetailRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<RecipeDetailRouteArgs> page =
+      PageInfo<RecipeDetailRouteArgs>(name);
+}
+
+class RecipeDetailRouteArgs {
+  const RecipeDetailRouteArgs({
+    this.key,
+    required this.recipe,
+  });
+
+  final Key? key;
+
+  final Meals recipe;
+
+  @override
+  String toString() {
+    return 'RecipeDetailRouteArgs{key: $key, recipe: $recipe}';
+  }
 }

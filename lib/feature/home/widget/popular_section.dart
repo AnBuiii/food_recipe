@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -5,6 +6,7 @@ import 'package:food_recipe/data/meals.dart';
 import 'package:food_recipe/database/app_database.dart';
 import 'package:food_recipe/feature/home/provider/recipe_providers.dart';
 import 'package:food_recipe/utils/colors.dart';
+import 'package:food_recipe/utils/route/app_router.dart';
 import 'package:food_recipe/utils/typo.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -19,9 +21,8 @@ class PopularSection extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedCategory = useState("Break fast");
-    final recipe = ref.watch(popularProvider);
+    final recipe = ref.watch(popularProvider(selectedCategory.value));
     final scrollController = useScrollController();
-    print("asd");
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12),
       child: Column(
@@ -78,25 +79,25 @@ class PopularSection extends HookConsumerWidget {
           const SizedBox(
             height: 20,
           ),
-          TextButton(
-            child: const Text(
-              "add before",
-            ),
-            onPressed: () {
-              ref.read(popularProvider.notifier).addBefore();
-              if (scrollController.position.pixels != 0) {
-                scrollController.jumpTo(scrollController.position.pixels + 150);
-              }
-            },
-          ),
-          TextButton(
-            child: const Text(
-              "add after",
-            ),
-            onPressed: () {
-              ref.read(popularProvider.notifier).addAfter();
-            },
-          ),
+          // TextButton(
+          //   child: const Text(
+          //     "add before",
+          //   ),
+          //   onPressed: () {
+          //     ref.read(popularProvider(selectedCategory.value).notifier).addBefore();
+          //     if (scrollController.position.pixels != 0) {
+          //       scrollController.jumpTo(scrollController.position.pixels + 150);
+          //     }
+          //   },
+          // ),
+          // TextButton(
+          //   child: const Text(
+          //     "add after",
+          //   ),
+          //   onPressed: () {
+          //     ref.read(popularProvider(selectedCategory.value).notifier).addAfter();
+          //   },
+          // ),
 
           /// Recipes
           SizedBox(
@@ -148,78 +149,83 @@ class PopularWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return SizedBox(
-      width: 150,
-      child: Stack(
-        children: [
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              height: 176,
-              width: 150,
-              decoration: BoxDecoration(
-                color: neutral10,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
-                child: Stack(
-                  children: [
-                    Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        recipe.strMeal ?? "",
-                        textAlign: TextAlign.center,
-                        style: label_bold,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
+    return InkWell(
+      onTap: () {
+        context.router.push(RecipeDetailRoute(recipe: recipe));
+      },
+      child: SizedBox(
+        width: 150,
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                height: 176,
+                width: 150,
+                decoration: BoxDecoration(
+                  color: neutral10,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
+                  child: Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          recipe.strMeal ?? "",
+                          textAlign: TextAlign.center,
+                          style: label_bold,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Wrap(
-                        direction: Axis.vertical,
-                        children: [
-                          Text(
-                            "Time",
-                            style: small_regular.copyWith(color: neutral30),
-                          ),
-                          Text(
-                            "${recipe.idMeal ?? ""} mins",
-                            style: small_bold,
-                          ),
-                        ],
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Wrap(
+                          direction: Axis.vertical,
+                          children: [
+                            Text(
+                              "Time",
+                              style: small_regular.copyWith(color: neutral30),
+                            ),
+                            Text(
+                              "${recipe.idMeal ?? ""} mins",
+                              style: small_bold,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: BookMark(
-                        recipeId: recipe.idMeal ?? "",
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: BookMark(
+                          recipeId: recipe.idMeal ?? "",
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          Align(
-            alignment: Alignment.topCenter,
-            child: Container(
-              height: 110,
-              width: 110,
-              decoration:
-                  const BoxDecoration(color: neutral10, shape: BoxShape.circle),
-              child: ClipOval(
-                child: Image.network(
-                  recipe.strMealThumb ?? "",
-                  fit: BoxFit.fill,
-                  width: 110,
-                  height: 110,
+            Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+                height: 110,
+                width: 110,
+                decoration:
+                    const BoxDecoration(color: neutral10, shape: BoxShape.circle),
+                child: ClipOval(
+                  child: Image.network(
+                    recipe.strMealThumb ?? "",
+                    fit: BoxFit.fill,
+                    width: 110,
+                    height: 110,
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

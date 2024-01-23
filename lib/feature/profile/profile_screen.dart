@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:food_recipe/feature/profile/widget/ProfileWidget.dart';
 import 'package:food_recipe/utils/colors.dart';
+import 'package:food_recipe/utils/random_string.dart';
 import 'package:food_recipe/utils/typo.dart';
 import 'package:food_recipe/utils/widgets/recipe_widget.dart';
 import 'package:food_recipe/utils/widgets/trending_widget.dart';

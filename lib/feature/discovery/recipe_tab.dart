@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe/database/saved_recipe_notifier.dart';
+import 'package:food_recipe/provider/saved_recipe_notifier.dart';
 import 'package:food_recipe/utils/widgets/recipe_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

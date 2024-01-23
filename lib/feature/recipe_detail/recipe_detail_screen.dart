@@ -1,13 +1,16 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-import 'package:food_recipe/feature/recipe_detail/IngredientSection.dart';
-import 'package:food_recipe/feature/recipe_detail/information_section.dart';
+import 'package:food_recipe/data/meals.dart';
+import 'package:food_recipe/feature/recipe_detail/widget/IngredientSection.dart';
+import 'package:food_recipe/feature/recipe_detail/widget/information_section.dart';
 import 'package:food_recipe/utils/typo.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage()
 class RecipeDetailScreen extends ConsumerWidget {
-  const RecipeDetailScreen({super.key});
+  final Meals recipe;
+
+  const RecipeDetailScreen({super.key, required this.recipe});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,22 +23,29 @@ class RecipeDetailScreen extends ConsumerWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.only(left: 20.0, right: 20, bottom: 12),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 12),
               child: Row(
                 children: [
-                  Text(
-                    "How to make french \ntoast",
-                    style: h4_bold,
+                  Expanded(
+                    child: Text(
+                      recipe.strMeal ?? "",
+                      style: h4_bold,
+                      maxLines: 2,
+                    ),
                   ),
                 ],
               ),
             ),
 
             // Information
-            InformationSection(),
+            InformationSection(
+              recipe: recipe,
+            ),
 
-            IngredientSection()
+            IngredientSection(
+              recipe: recipe,
+            )
           ],
         ),
       ),

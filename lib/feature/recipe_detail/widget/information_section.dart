@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:food_recipe/data/meals.dart';
 import 'package:food_recipe/utils/colors.dart';
 import 'package:food_recipe/utils/typo.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class InformationSection extends ConsumerWidget {
-  const InformationSection({super.key});
+  final Meals recipe;
+  const InformationSection({super.key, required this.recipe});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -15,8 +17,8 @@ class InformationSection extends ConsumerWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: Image.asset(
-              "assets/recipe.png",
+            child: Image.network(
+              recipe.strMealThumb ?? "",
               width: double.infinity,
               height: 200,
               fit: BoxFit.cover,
