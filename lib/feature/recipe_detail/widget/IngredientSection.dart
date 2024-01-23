@@ -17,25 +17,10 @@ class IngredientSection extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text("Ingredients", style: h5),
-              Text(
-                "${ingredientCount(recipe)} items",
-                style: label_regular.copyWith(color: neutral40),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          ListView.separated(
-            shrinkWrap: true,
-            // TODO
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (ctx, idx) {
-              return SizedBox(
+
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (ctx, idx) => SizedBox(
                 width: double.infinity,
                 child: IngredientWidget(
                   title: switch (idx) {
@@ -48,15 +33,23 @@ class IngredientSection extends ConsumerWidget {
                       } ??
                       "",
                 ),
-              );
-            },
-            separatorBuilder: (ctx, idx) {
-              return const SizedBox(
-                height: 12,
-              );
-            },
-            itemCount: ingredientCount(recipe),
+              ),
+              childCount: ingredientCount(recipe),
+            ),
           ),
+          // ListView.separated(
+          //   shrinkWrap: true,
+          //   physics: const NeverScrollableScrollPhysics(),
+          //   itemBuilder: (ctx, idx) {
+          //     return
+          //   },
+          //   separatorBuilder: (ctx, idx) {
+          //     return const SizedBox(
+          //       height: 12,
+          //     );
+          //   },
+          //   itemCount: ingredientCount(recipe),
+          // ),
         ],
       ),
     );
